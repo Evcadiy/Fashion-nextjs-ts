@@ -1,6 +1,12 @@
-import React from "react";
+import React, { FC, ReactNode } from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
+
+interface CustomBtnProps {
+  icon: ReactNode;
+  href: string;
+  className: string;
+}
 
 const RoundIconButton = styled(Button)(({ theme }) => ({
   minWidth: "48px",
@@ -24,7 +30,7 @@ const RoundIconButton = styled(Button)(({ theme }) => ({
   transition: "visibility 0s, opacity 0.3s linear",
 }));
 
-const CustomAboutBtn = ({ icon, ...props }) => {
+const CustomAboutBtn: FC<CustomBtnProps> = ({ icon, ...props }) => {
   return <RoundIconButton {...props}>{icon}</RoundIconButton>;
 };
 
