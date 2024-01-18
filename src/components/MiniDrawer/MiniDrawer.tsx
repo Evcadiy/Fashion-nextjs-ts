@@ -19,16 +19,17 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
-import getCategories from "@/utils/category";
+import { useCategories } from "@/utils/category";
 import { useState, useEffect } from "react";
 import BlenderIcon from "@mui/icons-material/Blender";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
-import { Badge, Button } from "@mui/material";
+import { Badge, Button, CircularProgress } from "@mui/material";
 import Link from "next/link";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { useDispatch } from "react-redux";
+
 import { setCategory } from "@/redux/categoriesSlice";
 import Cart from "../Cart/Cart";
 import { useAppSelector } from "@/redux/store";
@@ -106,7 +107,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer() {
   const dispatch = useDispatch();
-  const [categories, setCategories] = useState<string[] | null>(null);
+  const { data: categories, isError } = useCategories();
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const [cartOpen, setCartOpen] = useState(false);
@@ -116,11 +117,18 @@ export default function MiniDrawer() {
     0
   );
 
-  useEffect(() => {
-    getCategories().then((res) => {
-      setCategories(res);
-    });
-  }, []);
+  if (isError) {
+    return (
+      <h1
+        style={{
+          marginTop: "150px",
+          color: "red",
+        }}
+      >
+        Error loading categories
+      </h1>
+    );
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);

@@ -1,7 +1,7 @@
 import * as React from "react";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
 import MiniDrawer from "@/components/MiniDrawer/MiniDrawer";
-import Cart from "@/components/Cart/Cart";
+import "./globals.css";
 
 export const metadata = {
   title: "Fashion",

@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+
 export interface Product {
   id: number;
   title: string;
@@ -29,6 +31,13 @@ const getProducts = async (category?: string): Promise<Product[]> => {
     console.error("Error fetching products:", error);
     throw error;
   }
+};
+
+export const useProducts = (category?: string) => {
+  return useQuery<Product[], Error>({
+    queryKey: ["products", category],
+    queryFn: () => getProducts(category),
+  });
 };
 
 export default getProducts;

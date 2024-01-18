@@ -6,6 +6,7 @@ import NextAppDirEmotionCacheProvider from "./EmotionCache";
 import theme from "./theme";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
+import QueryClientProv from "@/providers/QueryClientProv";
 
 export default function ThemeRegistry({
   children,
@@ -15,10 +16,12 @@ export default function ThemeRegistry({
   return (
     <Provider store={store}>
       <NextAppDirEmotionCacheProvider options={{ key: "mui" }}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
+        <QueryClientProv>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </QueryClientProv>
       </NextAppDirEmotionCacheProvider>
     </Provider>
   );

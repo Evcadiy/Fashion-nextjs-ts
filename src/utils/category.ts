@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+
 const getCategories = async (): Promise<string[]> => {
   try {
     const response = await fetch(
@@ -14,6 +16,13 @@ const getCategories = async (): Promise<string[]> => {
     console.error("Error fetching products:", error);
     throw error;
   }
+};
+
+export const useCategories = () => {
+  return useQuery<string[], Error>({
+    queryKey: ["categories"],
+    queryFn: () => getCategories(),
+  });
 };
 
 export default getCategories;

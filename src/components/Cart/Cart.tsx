@@ -19,7 +19,6 @@ import { useAppSelector } from "@/redux/store";
 import CartItem from "./CartItem";
 import { useDispatch } from "react-redux";
 import {
-  removeItem,
   updateCartFromStorage,
   updateTotalAmount,
   removeAll,

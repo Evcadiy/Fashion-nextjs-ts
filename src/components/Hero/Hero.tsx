@@ -1,7 +1,5 @@
 import React from "react";
 import HeroImg from "@/assets/img/HeroImg.png";
-import HeroImg2 from "@/assets/img/HeroIMg2.png";
-import HeroImg3 from "@/assets/img/HeroImg3.png";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -150,7 +148,7 @@ const Hero = () => {
         <Image
           style={{ paddingRight: "150px" }}
           priority
-          src={HeroImg3}
+          src={HeroImg}
           alt="Image"
           layout="responsive"
           width={660}
